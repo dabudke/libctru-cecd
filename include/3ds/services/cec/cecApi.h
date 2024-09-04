@@ -7,7 +7,8 @@
 #include <3ds/types.h>
 
 /// Enum value that corresponds with a specific file or directory
-typedef enum {
+typedef enum
+{
     CEC_PATH_MBOX_LIST = 1,    /// data:/CEC/MBoxList____
     CEC_PATH_MBOX_INFO = 2,    /// data:/CEC/<id>/MBoxInfo____
     CEC_PATH_INBOX_INFO = 3,   /// data:/CEC/<id>/InBox___/BoxInfo_____
@@ -26,7 +27,8 @@ typedef enum {
 } CecDataPathType;
 
 /// Commands used with Start and Stop
-typedef enum {
+typedef enum
+{
     CEC_COMMAND_NONE = 0,
     CEC_COMMAND_START = 1,
     CEC_COMMAND_RESET_START = 2,
@@ -51,14 +53,16 @@ typedef enum {
     CEC_COMMAND_END = 21
 } CecCommand;
 
-typedef enum {
+typedef enum
+{
     CEC_READ = BIT(1),
     CEC_WRITE = BIT(2),
     CEC_CREATE = BIT(3),
     CEC_CHECK = BIT(4)
 } CecOpenFlag;
 
-typedef enum {
+typedef enum
+{
     CEC_STATE_NONE = 0,
     CEC_STATE_INIT = 1,
     CEC_STATE_WIRELESS_PARAM_SETUP = 2,
@@ -88,11 +92,13 @@ typedef enum {
     CEC_STATE_IDLE = 26
 } CecState;
 
-typedef struct {
+typedef struct
+{
     u8 data[8];
 } CecMessageId;
 
-typedef struct {
+typedef struct
+{
     u16 magic; // 0x6262 'bb'
     u16 padding;
     u32 fileSize;
@@ -113,14 +119,15 @@ typedef struct
     u8 boxNames[24][16]; // 12 used, but space for 24
 } CecMBoxListHeader;
 
-
-typedef struct {
+typedef struct
+{
     u16 magic; // 0x6767 'gg'
     u16 padding;
     u32 numMessages;
 } CecOBIndexHeader;
 
-typedef struct {
+typedef struct
+{
     u32 year;
     u8 month;
     u8 day;
@@ -131,7 +138,8 @@ typedef struct {
     u16 millisecond;
 } CecTimestamp;
 
-typedef struct {
+typedef struct
+{
     u16 magic; // 0x6363 'cc'
     u16 padding1;
     u32 programId;
@@ -142,13 +150,17 @@ typedef struct {
     u8 hmacKey[32];
     u32 padding3;
     CecTimestamp lastAccessed;
-    u32 padding4;
+    u8 flag3;
+    u8 flag4;
+    u8 flag5;
+    u8 flag6;
     CecTimestamp lastReceived;
     u32 padding5;
     CecTimestamp unknownTime;
 } CecMBoxInfoHeader;
 
-typedef struct {
+typedef struct
+{
     u16 magic; // 0x6060 ``
     u16 padding;
     u32 messageSize;
